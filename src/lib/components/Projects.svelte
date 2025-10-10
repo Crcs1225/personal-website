@@ -2,11 +2,11 @@
     import ProjectCard from './ProjectCard.svelte';
     const projects = [
     {
-      imagePath: "/images/youth-grade-store.jpg",
-      title: "Youth Grade-Store",
-      description: "A reward system for church youth that improved academic grades by 10–20% through incentive-based learning and achievement tracking.",
-      link: "https://github.com/yourusername/youth-grade-store",
-      techStack: ['Svelte', 'Firebase', 'TailwindCSS', 'Node.js']
+      imagePath: "/images/banana.png",
+      title: "Banana Ripeness AI",
+      description: "Computer vision system classifying banana shelf life stages using EfficientNet and TensorFlow.",
+      link: "https://app-banana-ml-tghicrftf5lqdhdaadsssj.streamlit.app/",
+      techStack: ['EfficientNet', 'TensorFlow', 'FastAPI', 'Streamlit']
     },
     {
       imagePath: "/images/portfolio.png",
