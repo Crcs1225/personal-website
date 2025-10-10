@@ -4,7 +4,7 @@
   const mySocialLinks = [
     {
         name: 'GitHub',
-        url: 'https://github.com/yourusername',
+        url: 'https://github.com/Crcs1225',
         ariaLabel: 'GitHub',
         hoverColor: 'hover:text-blue-400',
         icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -13,7 +13,7 @@
     },
     {
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/yourusername',
+        url: 'https://www.linkedin.com/in/zrmdcs12',
         ariaLabel: 'LinkedIn',
         hoverColor: 'hover:text-blue-500',
         icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -32,7 +32,7 @@
     },
     {
         name: 'Email',
-        url: 'mailto:youremail@example.com',
+        url: 'mailto:caracasmarcdaniel89@gmail.com',
         ariaLabel: 'Email',
         hoverColor: 'hover:text-red-400',
         icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
