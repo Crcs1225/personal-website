@@ -2,6 +2,13 @@
     import ProjectCard from './ProjectCard.svelte';
     const projects = [
     {
+      imagePath: "/images/weather.jpg",
+      title: "Weather Monitoring Device and Mobile App",
+      description: "IoT weather station with React Native app for real-time data visualization, leveraging C++ microcontroller programming and Firebase for cloud storage.",
+      link: "",
+      techStack: ['React Native', 'C++', 'IoT', 'Firebase', 'Expo']
+    },
+    {
       imagePath: "/images/banana.png",
       title: "Banana Ripeness AI",
       description: "Computer vision system classifying banana shelf life stages using EfficientNet and TensorFlow.",
@@ -9,25 +16,18 @@
       techStack: ['EfficientNet', 'TensorFlow', 'FastAPI', 'Streamlit']
     },
     {
+      imagePath: "images/coco-cls.png",
+      title: "Coconut Image Classification Tool",
+      description: "Machine learning application for image classification using TensorFlow and custom datasets, achieving 95% accuracy on test data. Deployed Flutter mobile app with FastAPI backend for real-time predictions.",
+      link: "https://coco7mg.netlify.app/",
+      techStack: ['Python', 'TensorFlow', 'FastAPI', 'HuggingFace', 'Next.js', 'Docker', 'Flutter']
+    },
+    {
       imagePath: "/images/portfolio.png",
       title: "Personal Portfolio Website",
       description: "Minimalist, recruiter-friendly portfolio showcasing dynamic project sections, animated transitions, and modular components built with Svelte and TailwindCSS.",
       link: "https://github.com/Crcs1225/portfolio-website",
       techStack: ['Svelte', 'TypeScript', 'TailwindCSS', 'Vite']
-    },
-    {
-      imagePath: "images/coco-cls.png",
-      title: "Coconut Image Classification Tool",
-      description: "Machine learning application for image classification using TensorFlow and custom datasets, achieving 95% accuracy on test data.",
-      link: "https://coco7mg.netlify.app/",
-      techStack: ['Python', 'TensorFlow', 'FastAPI', 'HuggingFace', 'Next.js', 'Docker']
-    },
-    {
-      imagePath: "images/e-com.png",
-      title: "AI-Powered E-Commerce Platform",
-      description: "Personal front-end and AI project featuring a responsive e-commerce interface with product recommendation system and an integrated chatbot powered by Retrieval-Augmented Generation (RAG) and LLMs.",
-      link: "https://d-ecommerce-omega.vercel.app/",
-      techStack: ['Next.js', 'Express', 'MySQL', 'FastAPI', 'RAG', 'LLM', 'HuggingFace', 'Docker' ]
     }
   ];
 </script>

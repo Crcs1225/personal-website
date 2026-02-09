@@ -3,10 +3,17 @@
 
   const experiences = [
     {
+      title: 'Junior AI & Automation Developer',
+      company: 'CircleHash LLC',
+      dateRange: 'Oct 2025 – Present',
+      description: 'Developing AI-driven marketing and content automation systems using n8n, managing programmatic social media growth strategies, evaluating and implementing SaaS and AI tools for internal operations, and building SEO-focused Shopify web solutions.',
+      techStacks: ['TypeScript', 'React Native', 'n8n', 'Make', 'Account Management', 'Expo']
+    },
+    {
       title: 'Software Developer Intern',
       company: 'Provincial Government of Pangasinan',
       dateRange: 'Feb 2025 – May 2025',
-      description: 'Built and deployed an HR applicant portal, reducing manual HR tasks by 60% and improving hiring speed.',
+      description: 'Developed and deployed an HR applicant portal that streamlined recruitment processes, reducing manual tasks by 60% and accelerating hiring efficiency.',
       techStacks: ['PHP', 'Vanilla JavaScript', 'HTML', 'CSS', 'MySQL', 'Hostinger']
     },
     {
