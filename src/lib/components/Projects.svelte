@@ -28,6 +28,20 @@
       description: "Minimalist, recruiter-friendly portfolio showcasing dynamic project sections, animated transitions, and modular components built with Svelte and TailwindCSS.",
       link: "https://github.com/Crcs1225/portfolio-website",
       techStack: ['Svelte', 'TypeScript', 'TailwindCSS', 'Vite']
+    },
+    {
+      imagePath: "/images/mealio.jpg",
+      title: "Recommendation System for Food using Hybrid Filtering in Mobile Application",
+      description: "Hybrid recommendation system combining collaborative and content-based filtering for personalized food suggestions.",
+      link: "https://github.com/Crcs1225/Meal.io",
+      techStack: ['Flutter', 'TensorFlow', 'Firebase', 'Dart', 'Kaggle', 'Python', 'Flask', 'HuggingFace']
+    },
+    {
+      imagePath: "/images/library.jpg",
+      title: "Simple Library Reservation Application",
+      description: "Flutter application for library reservation management with Firebase backend.",
+      link: "https://github.com/Crcs1225/library",
+      techStack: ['Flutter', 'Dart', 'Firebase']
     }
   ];
 </script>
