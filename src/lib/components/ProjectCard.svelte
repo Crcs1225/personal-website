@@ -24,6 +24,8 @@
           <img
             src={imagePath}
             alt={title}
+            loading="lazy"
+            decoding="async"
             class="absolute inset-0 w-full h-full object-cover 
                    group-hover:scale-105 transition-transform duration-300"
           />

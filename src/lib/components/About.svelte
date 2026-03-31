@@ -11,39 +11,35 @@
     <div class="flex items-center gap-2">
       <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
       <span class="text-sm font-medium text-blue-400">
-        Junior AI Developer
+        Junior AI & Developer at OneMiners
       </span>
     </div>
   </div>
 
-
   <!-- Improved Paragraph -->
   <div class="space-y-4">
     <p class="text-base md:text-lg leading-relaxed text-gray-300">
-      I'm an AI-focused developer specializing in building SaaS platforms and 
-      mobile applications powered by artificial intelligence. I design and 
-      develop intelligent systems that transform ideas into scalable, 
-      real-world digital products.
+      I'm a junior AI and full-stack developer building automation systems,
+      web products, and mobile applications that solve real operational
+      problems. My work combines product development with practical AI
+      implementation, from intelligent workflows to user-facing features.
     </p>
-    
+
     <p class="text-base md:text-lg leading-relaxed text-gray-300">
-      Alongside AI product development, I bring hands-on experience in automation, 
-      marketing systems, and SEO strategy — allowing me to build not only 
-      technically strong applications, but solutions designed for growth and 
-      real user impact.
+      In my current role at OneMiners, I focus on AI automation, API
+      integrations, deployment workflows, and full-stack delivery across web
+      and mobile. That mix lets me ship systems that are not only technically
+      solid, but usable, scalable, and production-oriented.
     </p>
   </div>
-
-
 
   <!-- Organized Skills Grid -->
   <div class="space-y-6">
     <h3 class="text-lg text-center md:text-left font-semibold text-white">
       AI Product & Development Stack
     </h3>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- AI Development -->
       <div class="space-y-3">
         <h4 class="text-sm font-medium text-gray-200">
@@ -66,7 +62,7 @@
         <div class="flex flex-wrap gap-2">
           <span class="text-xs px-3 py-1 border border-green-500/30 rounded-md bg-green-500/10 text-green-300">Workflow Automation</span>
           <span class="text-xs px-3 py-1 border border-teal-500/30 rounded-md bg-teal-500/10 text-teal-300">API Integration</span>
-          <span class="text-xs px-3 py-1 border border-blue-500/30 rounded-md bg-blue-500/10 text-blue-300">Marketing Automation</span>
+          <span class="text-xs px-3 py-1 border border-blue-500/30 rounded-md bg-blue-500/10 text-blue-300">System Integrations</span>
           <span class="text-xs px-3 py-1 border border-indigo-500/30 rounded-md bg-indigo-500/10 text-indigo-300">n8n</span>
         </div>
       </div>
@@ -79,9 +75,9 @@
         <div class="flex flex-wrap gap-2">
           <span class="text-xs px-3 py-1 border border-blue-500/30 rounded-md bg-blue-500/10 text-blue-300">React</span>
           <span class="text-xs px-3 py-1 border border-gray-500 rounded-md bg-gray-700 text-gray-300">Next.js</span>
-          <span class="text-xs px-3 py-1 border border-green-500/30 rounded-md bg-green-500/10 text-green-300">Express</span>
+          <span class="text-xs px-3 py-1 border border-green-500/30 rounded-md bg-green-500/10 text-green-300">TypeScript</span>
           <span class="text-xs px-3 py-1 border border-teal-500/30 rounded-md bg-teal-500/10 text-teal-300">FastAPI</span>
-          <span class="text-xs px-3 py-1 border border-emerald-500/30 rounded-md bg-emerald-500/10 text-emerald-300">MongoDB</span>
+          <span class="text-xs px-3 py-1 border border-emerald-500/30 rounded-md bg-emerald-500/10 text-emerald-300">Docker</span>
         </div>
       </div>
 
@@ -94,12 +90,10 @@
           <span class="text-xs px-3 py-1 border border-blue-500/30 rounded-md bg-blue-500/10 text-blue-300">React Native</span>
           <span class="text-xs px-3 py-1 border border-cyan-500/30 rounded-md bg-cyan-500/10 text-cyan-300">Flutter</span>
           <span class="text-xs px-3 py-1 border border-black/30 rounded-md bg-black/20 text-gray-300">Vercel</span>
-          <span class="text-xs px-3 py-1 border border-gray-500 rounded-md bg-gray-700 text-gray-300">Netlify</span>
-          <span class="text-xs px-3 py-1 border border-yellow-500/30 rounded-md bg-yellow-500/10 text-yellow-300">Hostinger</span>
+          <span class="text-xs px-3 py-1 border border-gray-500 rounded-md bg-gray-700 text-gray-300">CI/CD</span>
+          <span class="text-xs px-3 py-1 border border-yellow-500/30 rounded-md bg-yellow-500/10 text-yellow-300">Deployment</span>
         </div>
       </div>
-
     </div>
   </div>
-
 </section>

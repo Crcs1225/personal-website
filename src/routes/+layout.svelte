@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Marc Daniel Caracas | Portfolio</title>
+	<title>Marc Daniel Caracas | Junior AI & Full-Stack Developer</title>
 	<link rel="icon" type="image/png" href={favicon} />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </svelte:head>
