@@ -6,7 +6,10 @@
 <svelte:head>
 	<title>Marc Daniel Caracas | Junior AI & Full-Stack Developer</title>
 	<link rel="icon" type="image/png" href={favicon} />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+		rel="stylesheet"
+	/>
 </svelte:head>
 
 <!-- Cyber Grid Background -->
@@ -24,7 +27,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: 
+		background:
 			linear-gradient(90deg, rgba(59, 130, 246, 0.2) 1px, transparent 1px),
 			linear-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px);
 		background-size: 40px 40px;
@@ -39,7 +42,7 @@
 		left: 0;
 		width: 200%;
 		height: 200%;
-		background: 
+		background:
 			radial-gradient(circle at 30% 30%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
 			radial-gradient(circle at 70% 70%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
 		animation: gradientShift 25s linear infinite;

@@ -6,9 +6,10 @@
 	export let selectedSection: 'about' | 'experience' | 'projects';
 </script>
 
-<div class="flex flex-col justify-between h-full p-6 md:px-12 md:py-24 text-gray-800 dark:text-gray-200">
-	
-    <Hero />
-    <Menu {selectedSection} on:nav />
-    <Socials />
+<div
+	class="flex flex-col justify-between h-full p-6 md:px-12 md:py-24 text-gray-800 dark:text-gray-200"
+>
+	<Hero />
+	<Menu {selectedSection} on:nav />
+	<Socials />
 </div>

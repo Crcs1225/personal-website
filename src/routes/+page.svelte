@@ -109,11 +109,33 @@
 								ease: 'power3.out'
 							}
 						})
-						.from('.desktop-sidebar .hero-line', {
+						.from('.desktop-sidebar .hero-name-char', {
 							autoAlpha: 0,
-							y: 28,
-							stagger: 0.12
+							yPercent: 110,
+							rotateX: -90,
+							transformOrigin: '50% 100%',
+							stagger: 0.03,
+							duration: 0.9,
+							ease: 'back.out(1.7)'
 						})
+						.from(
+							'.desktop-sidebar .hero-name-gap',
+							{
+								autoAlpha: 0,
+								duration: 0.2,
+								stagger: 0.03
+							},
+							'<0.08'
+						)
+						.from(
+							'.desktop-sidebar .hero-line',
+							{
+								autoAlpha: 0,
+								y: 28,
+								stagger: 0.12
+							},
+							'-=0.45'
+						)
 						.from(
 							'.desktop-sidebar [data-menu-item]',
 							{
@@ -134,6 +156,14 @@
 							},
 							'-=0.25'
 						);
+
+					gsap.to('.desktop-sidebar .hero-name', {
+						y: -3,
+						duration: 2.2,
+						repeat: -1,
+						yoyo: true,
+						ease: 'sine.inOut'
+					});
 
 					animateItems('.desktop-section .reveal-block', {
 						scroller: desktopScroller,
@@ -168,11 +198,33 @@
 								ease: 'power3.out'
 							}
 						})
-						.from('.mobile-header .hero-line', {
+						.from('.mobile-header .hero-name-char', {
 							autoAlpha: 0,
-							y: 26,
-							stagger: 0.1
+							yPercent: 110,
+							rotateX: -90,
+							transformOrigin: '50% 100%',
+							stagger: 0.028,
+							duration: 0.85,
+							ease: 'back.out(1.7)'
 						})
+						.from(
+							'.mobile-header .hero-name-gap',
+							{
+								autoAlpha: 0,
+								duration: 0.18,
+								stagger: 0.03
+							},
+							'<0.08'
+						)
+						.from(
+							'.mobile-header .hero-line',
+							{
+								autoAlpha: 0,
+								y: 26,
+								stagger: 0.1
+							},
+							'-=0.42'
+						)
 						.from(
 							'.mobile-header [data-social-link]',
 							{
@@ -193,6 +245,14 @@
 							},
 							'-=0.2'
 						);
+
+					gsap.to('.mobile-header .hero-name', {
+						y: -3,
+						duration: 2.2,
+						repeat: -1,
+						yoyo: true,
+						ease: 'sine.inOut'
+					});
 
 					animateItems('.mobile-section .reveal-block', {
 						y: 34
