@@ -1,406 +1,117 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
-	import LeftColumn from '$lib/components/LeftColumn.svelte';
-	import About from '$lib/components/About.svelte';
-	import Experience from '$lib/components/Experience.svelte';
-	import Projects from '$lib/components/Projects.svelte';
-	import Footer from '$lib/components/Footer.svelte';
-	import Hero from '$lib/components/Hero.svelte';
-	import Socials from '$lib/components/Socials.svelte';
+	import SiteFooter from '$lib/components/layout/SiteFooter.svelte';
+	import SiteHeader from '$lib/components/layout/SiteHeader.svelte';
+	import { profile } from '$lib/content/profile';
+	import AboutSection from '$lib/sections/AboutSection.svelte';
+	import ContactSection from '$lib/sections/ContactSection.svelte';
+	import ExperienceSection from '$lib/sections/ExperienceSection.svelte';
+	import HeroSection from '$lib/sections/HeroSection.svelte';
+	import ProjectsSection from '$lib/sections/ProjectsSection.svelte';
+	import SkillsSection from '$lib/sections/SkillsSection.svelte';
+	import type { SectionId } from '$lib/types/portfolio';
 
-	let selectedSection: 'about' | 'experience' | 'projects' = 'about';
-	let rightColumn: HTMLElement | null = null;
+	interface SectionConfig {
+		readonly id: SectionId;
+		readonly label: string;
+		readonly href: `#${SectionId}`;
+	}
+
+	const sections: readonly SectionConfig[] = [
+		{ id: 'top', label: 'Top', href: '#top' },
+		{ id: 'about', label: 'About', href: '#about' },
+		{ id: 'skills', label: 'Skills', href: '#skills' },
+		{ id: 'projects', label: 'Projects', href: '#projects' },
+		{ id: 'experience', label: 'Experience', href: '#experience' },
+		{ id: 'contact', label: 'Contact', href: '#contact' }
+	];
+
+	const navItems = sections.filter((section) => section.id !== 'top');
+	const sectionIds = sections.map((section) => section.id);
+	const footerYear = 2026;
+	let activeSection: SectionId | null = 'top';
+
+	function handleNavigate(event: CustomEvent<SectionId>) {
+		activeSection = event.detail;
+	}
 
 	onMount(() => {
-		if (!rightColumn) {
-			return;
-		}
+		const sections = sectionIds
+			.map((id) => document.getElementById(id))
+			.filter((section): section is HTMLElement => section !== null);
 
-		gsap.registerPlugin(ScrollTrigger);
-		const desktopScroller = rightColumn;
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visibleEntries = entries
+					.filter((entry) => entry.isIntersecting)
+					.sort((left, right) => right.intersectionRatio - left.intersectionRatio);
 
-		const sections = Array.from(
-			desktopScroller.querySelectorAll<HTMLElement>('section.desktop-section')
+				const currentId = visibleEntries[0]?.target.id;
+
+				if (currentId && sectionIds.includes(currentId as SectionId)) {
+					activeSection = currentId as SectionId;
+				}
+			},
+			{
+				rootMargin: '-35% 0px -45% 0px',
+				threshold: [0.1, 0.25, 0.4, 0.6]
+			}
 		);
 
-		let ticking = false;
-
-		const updateActiveSection = () => {
-			ticking = false;
-
-			if (window.innerWidth < 768 || !sections.length) {
-				return;
-			}
-
-			const midpoint = desktopScroller.scrollTop + desktopScroller.clientHeight / 2;
-			let currentActive = sections[0]?.id ?? 'about';
-
-			for (const section of sections) {
-				const offsetTop = section.offsetTop;
-				const offsetBottom = offsetTop + section.offsetHeight;
-
-				if (midpoint >= offsetTop && midpoint <= offsetBottom) {
-					currentActive = section.id;
-					break;
-				}
-
-				if (midpoint > offsetBottom) {
-					currentActive = section.id;
-				}
-			}
-
-			selectedSection = currentActive as typeof selectedSection;
-		};
-
-		const handleScroll = () => {
-			if (ticking) {
-				return;
-			}
-
-			ticking = true;
-			requestAnimationFrame(updateActiveSection);
-		};
-
-		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		let animationContext: gsap.Context | undefined;
-
-		if (!prefersReducedMotion) {
-			animationContext = gsap.context(() => {
-				const animateItems = (
-					selector: string,
-					vars: {
-						y?: number;
-						x?: number;
-						duration?: number;
-						stagger?: number;
-						start?: string;
-						scroller?: HTMLElement;
-					} = {}
-				) => {
-					const items = gsap.utils.toArray<HTMLElement>(selector);
-
-					items.forEach((item, index) => {
-						gsap.from(item, {
-							autoAlpha: 0,
-							y: vars.y ?? 40,
-							x: vars.x ?? 0,
-							duration: vars.duration ?? 0.8,
-							ease: 'power3.out',
-							delay: vars.stagger ? index * vars.stagger : 0,
-							scrollTrigger: {
-								trigger: item,
-								start: vars.start ?? 'top 82%',
-								once: true,
-								scroller: vars.scroller
-							}
-						});
-					});
-				};
-
-				const media = gsap.matchMedia();
-
-				media.add('(min-width: 768px)', () => {
-					gsap
-						.timeline({
-							defaults: {
-								duration: 0.75,
-								ease: 'power3.out'
-							}
-						})
-						.from('.desktop-sidebar .hero-name-char', {
-							autoAlpha: 0,
-							yPercent: 110,
-							rotateX: -90,
-							transformOrigin: '50% 100%',
-							stagger: 0.03,
-							duration: 0.9,
-							ease: 'back.out(1.7)'
-						})
-						.from(
-							'.desktop-sidebar .hero-name-gap',
-							{
-								autoAlpha: 0,
-								duration: 0.2,
-								stagger: 0.03
-							},
-							'<0.08'
-						)
-						.from(
-							'.desktop-sidebar .hero-line',
-							{
-								autoAlpha: 0,
-								y: 28,
-								stagger: 0.12
-							},
-							'-=0.45'
-						)
-						.from(
-							'.desktop-sidebar [data-menu-item]',
-							{
-								autoAlpha: 0,
-								x: -20,
-								stagger: 0.08,
-								duration: 0.55
-							},
-							'-=0.35'
-						)
-						.from(
-							'.desktop-sidebar [data-social-link]',
-							{
-								autoAlpha: 0,
-								y: 18,
-								stagger: 0.08,
-								duration: 0.45
-							},
-							'-=0.25'
-						);
-
-					gsap.to('.desktop-sidebar .hero-name', {
-						y: -3,
-						duration: 2.2,
-						repeat: -1,
-						yoyo: true,
-						ease: 'sine.inOut'
-					});
-
-					animateItems('.desktop-section .reveal-block', {
-						scroller: desktopScroller,
-						y: 36
-					});
-					animateItems('.desktop-section .reveal-card', {
-						scroller: desktopScroller,
-						y: 44
-					});
-					animateItems('.desktop-section .experience-item', {
-						scroller: desktopScroller,
-						x: 30,
-						y: 0,
-						start: 'top 86%'
-					});
-					animateItems('.desktop-section .project-card', {
-						scroller: desktopScroller,
-						y: 54
-					});
-					animateItems('.site-footer', {
-						scroller: desktopScroller,
-						y: 30,
-						start: 'top bottom-=48'
-					});
-				});
-
-				media.add('(max-width: 767px)', () => {
-					gsap
-						.timeline({
-							defaults: {
-								duration: 0.7,
-								ease: 'power3.out'
-							}
-						})
-						.from('.mobile-header .hero-name-char', {
-							autoAlpha: 0,
-							yPercent: 110,
-							rotateX: -90,
-							transformOrigin: '50% 100%',
-							stagger: 0.028,
-							duration: 0.85,
-							ease: 'back.out(1.7)'
-						})
-						.from(
-							'.mobile-header .hero-name-gap',
-							{
-								autoAlpha: 0,
-								duration: 0.18,
-								stagger: 0.03
-							},
-							'<0.08'
-						)
-						.from(
-							'.mobile-header .hero-line',
-							{
-								autoAlpha: 0,
-								y: 26,
-								stagger: 0.1
-							},
-							'-=0.42'
-						)
-						.from(
-							'.mobile-header [data-social-link]',
-							{
-								autoAlpha: 0,
-								y: 16,
-								stagger: 0.08,
-								duration: 0.45
-							},
-							'-=0.25'
-						)
-						.from(
-							'.mobile-nav [data-mobile-nav-item]',
-							{
-								autoAlpha: 0,
-								y: 14,
-								stagger: 0.08,
-								duration: 0.4
-							},
-							'-=0.2'
-						);
-
-					gsap.to('.mobile-header .hero-name', {
-						y: -3,
-						duration: 2.2,
-						repeat: -1,
-						yoyo: true,
-						ease: 'sine.inOut'
-					});
-
-					animateItems('.mobile-section .reveal-block', {
-						y: 34
-					});
-					animateItems('.mobile-section .reveal-card', {
-						y: 40
-					});
-					animateItems('.mobile-section .experience-item', {
-						x: 24,
-						y: 0,
-						start: 'top 88%'
-					});
-					animateItems('.mobile-section .project-card', {
-						y: 48
-					});
-					animateItems('.site-footer', {
-						y: 26,
-						start: 'top bottom-=36'
-					});
-				});
-
-				requestAnimationFrame(() => ScrollTrigger.refresh());
-			});
+		for (const section of sections) {
+			observer.observe(section);
 		}
 
-		updateActiveSection();
+		const syncFromHash = () => {
+			const id = window.location.hash.slice(1) as SectionId;
 
-		rightColumn.addEventListener('scroll', handleScroll, { passive: true });
-		window.addEventListener('resize', updateActiveSection);
+			if (sectionIds.includes(id)) {
+				activeSection = id;
+				return;
+			}
+
+			activeSection = 'top';
+		};
+
+		syncFromHash();
+		window.addEventListener('hashchange', syncFromHash);
 
 		return () => {
-			animationContext?.revert();
-			rightColumn?.removeEventListener('scroll', handleScroll);
-			window.removeEventListener('resize', updateActiveSection);
+			observer.disconnect();
+			window.removeEventListener('hashchange', syncFromHash);
 		};
 	});
-
-	function navigateToSection(id: typeof selectedSection) {
-		selectedSection = id;
-
-		if (window.innerWidth >= 768) {
-			const element = rightColumn?.querySelector<HTMLElement>(`section.desktop-section#${id}`);
-
-			if (element && rightColumn) {
-				const centeredOffset =
-					element.offsetTop - (rightColumn.clientHeight - element.offsetHeight) / 2;
-				const maxScrollTop = rightColumn.scrollHeight - rightColumn.clientHeight;
-				const top = Math.max(0, Math.min(centeredOffset, maxScrollTop));
-
-				rightColumn.scrollTo({ top, behavior: 'smooth' });
-			}
-
-			return;
-		}
-
-		const element = document.querySelector<HTMLElement>(`section.mobile-section#${id}`);
-
-		element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-	}
-
-	function handleNav(e: CustomEvent<typeof selectedSection>) {
-		navigateToSection(e.detail);
-	}
 </script>
 
-<div class="min-h-screen">
-	<!-- Mobile Header (Hero + Socials) -->
-	<div class="mobile-header md:hidden text-white p-6 border-b border-gray-700">
-		<div class="flex flex-col items-center text-center space-y-4 pt-12">
-			<Hero />
-			<Socials />
-		</div>
-	</div>
+<svelte:head>
+	<style>
+		html {
+			scroll-behavior: smooth;
+		}
 
-	<!-- Mobile Navigation -->
-	<div class="mobile-nav md:hidden sticky top-0 bg-gray-800 border-b border-gray-700 z-10">
-		<div class="flex justify-around py-3">
-			<button
-				type="button"
-				data-mobile-nav-item
-				class="text-sm transition-colors {selectedSection === 'about'
-					? 'text-white'
-					: 'text-gray-400 hover:text-white'}"
-				on:click={() => navigateToSection('about')}
-			>
-				About
-			</button>
-			<button
-				type="button"
-				data-mobile-nav-item
-				class="text-sm transition-colors {selectedSection === 'experience'
-					? 'text-white'
-					: 'text-gray-400 hover:text-white'}"
-				on:click={() => navigateToSection('experience')}
-			>
-				Experience
-			</button>
-			<button
-				type="button"
-				data-mobile-nav-item
-				class="text-sm transition-colors {selectedSection === 'projects'
-					? 'text-white'
-					: 'text-gray-400 hover:text-white'}"
-				on:click={() => navigateToSection('projects')}
-			>
-				Projects
-			</button>
-		</div>
-	</div>
+		@media (prefers-reduced-motion: reduce) {
+			html {
+				scroll-behavior: auto;
+			}
+		}
+	</style>
+</svelte:head>
 
-	<!-- Main Content -->
-	<div class="grid grid-cols-1 md:grid-cols-24 min-h-screen">
-		<!-- Left Column - Hidden on mobile -->
-		<div class="desktop-sidebar hidden md:block md:col-span-11">
-			<LeftColumn {selectedSection} on:nav={handleNav} />
-		</div>
+<SiteHeader
+	name={profile.name}
+	links={navItems}
+	{activeSection}
+	homeHref="#top"
+	on:navigate={handleNavigate}
+/>
 
-		<!-- Right Column - Full width single scroll on mobile -->
-		<div
-			bind:this={rightColumn}
-			class="right-column col-span-1 md:col-span-13 md:px-12 md:overflow-y-auto md:h-screen pt-24"
-		>
-			<!-- Mobile: Single scroll with section titles -->
-			<div class="md:hidden space-y-8 px-6">
-				<section id="about" class="mobile-section pt-8 scroll-mt-24">
-					<h2 class="reveal-block text-2xl font-bold text-white mb-6">About</h2>
-					<About />
-				</section>
+<main>
+	<HeroSection />
+	<AboutSection />
+	<SkillsSection />
+	<ProjectsSection />
+	<ExperienceSection />
+	<ContactSection />
+</main>
 
-				<section id="experience" class="mobile-section pt-8 scroll-mt-24">
-					<h2 class="reveal-block text-2xl font-bold text-white mb-6">Experience</h2>
-					<Experience />
-				</section>
-
-				<section id="projects" class="mobile-section pt-8 scroll-mt-24">
-					<h2 class="reveal-block text-2xl font-bold text-white mb-6">Projects</h2>
-					<Projects />
-				</section>
-			</div>
-
-			<!-- Desktop: No titles, independent scroll -->
-			<div class="hidden md:block">
-				<section id="about" class="desktop-section"><About /></section>
-				<section id="experience" class="desktop-section"><Experience /></section>
-				<section id="projects" class="desktop-section"><Projects /></section>
-			</div>
-
-			<Footer />
-		</div>
-	</div>
-</div>
+<SiteFooter name={profile.name} links={profile.contactLinks} year={footerYear} />
